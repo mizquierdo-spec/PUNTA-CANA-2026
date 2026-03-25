@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Itinerario Oficial: Team de 4 en Punta Cana</title>
+    <title>Itinerario Punta Cana AI - Montse & Bea</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
@@ -12,271 +12,137 @@
         .fuchsia-text { color: var(--fuchsia); }
         .fuchsia-bg { background-color: var(--fuchsia); }
         .header-title { font-family: 'Playfair Display', serif; letter-spacing: 1px; }
+        .day-card { background: #111; border-left: 4px solid var(--fuchsia); transition: all 0.3s ease; }
         .neon-glow { text-shadow: 0 0 10px var(--fuchsia), 0 0 20px var(--fuchsia); }
-        .day-card { background: #111; border-left: 4px solid var(--fuchsia); transition: transform 0.2s; }
+        .hannah-section { background: linear-gradient(45deg, #ff007f, #000); border: 2px solid white; }
         .timeline-dot { width: 10px; height: 10px; background-color: var(--fuchsia); border-radius: 50%; display: inline-block; margin-right: 8px; flex-shrink: 0; }
         .modal-overlay { background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); }
         .loading-spinner { border: 4px solid rgba(255, 255, 255, 0.1); border-left-color: var(--fuchsia); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        
-        #aiResult {
-            scrollbar-width: thin;
-            scrollbar-color: var(--fuchsia) transparent;
-        }
-        #aiResult::-webkit-scrollbar { width: 6px; }
-        #aiResult::-webkit-scrollbar-thumb { background-color: var(--fuchsia); border-radius: 10px; }
+        .floating-ai-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 50; box-shadow: 0 0 15px var(--fuchsia); padding: 1rem; }
     </style>
 </head>
-<body class="p-4 sm:p-8">
+<body class="p-4 sm:p-6 md:p-8">
 
-    <!-- Botón Flotante de IA -->
-    <button onclick="openAIModal('menu')" class="fixed bottom-6 right-6 z-50 fuchsia-bg text-white p-4 rounded-full shadow-lg shadow-fuchsia-900/50 active:scale-90 transition-transform">
-        <span class="text-2xl">✨</span>
+    <button onclick="openAIModal()" class="floating-ai-btn fuchsia-bg text-white rounded-full flex items-center gap-2 active:scale-95 transition-transform">
+        <span class="text-xl">✨</span>
+        <span class="font-bold hidden sm:inline">IA de Viaje</span>
     </button>
 
     <header class="text-center mb-10 py-6 border-b-2 border-fuchsia-700">
-        <h2 class="text-fuchsia-500 uppercase tracking-widest text-[10px] font-bold mb-2">PUNTA CANA 2026</h2>
-        <h1 class="header-title text-4xl sm:text-5xl font-black mb-4 italic leading-tight">NUESTRA AVENTURA</h1>
-        <div class="flex flex-col gap-2 items-center">
-            <p class="text-[10px] uppercase tracking-widest mb-2 opacity-70 italic">Masterminds: Berni & Chon</p>
+        <h2 class="text-fuchsia-500 uppercase tracking-widest text-[10px] sm:text-xs font-bold mb-2 text-balance">Organizado por Berni & Chon</h2>
+        <h1 class="header-title text-4xl sm:text-5xl md:text-7xl font-black mb-4 italic leading-tight">GIRLS TRIP</h1>
+        <div class="flex flex-col gap-3 items-center justify-center">
             <div class="flex flex-wrap justify-center gap-2">
-                <span class="bg-white text-black px-4 py-1 font-bold rounded shadow-lg italic text-sm">💍 Montse Hoyl</span>
-                <span class="bg-white text-black px-4 py-1 font-bold rounded shadow-lg italic text-sm text-nowrap">✨ Bea Tagle</span>
+                <span class="bg-white text-black px-3 py-1 font-bold rounded">👰 Montse Hoyl</span>
+                <span class="bg-white text-black px-3 py-1 font-bold rounded">✨ Bea Tagle</span>
             </div>
-            <p class="text-fuchsia-500 font-bold text-[10px] mt-4 tracking-widest uppercase">¡LAS 4 JUNTAS EN EL CARIBE!</p>
+            <p class="text-fuchsia-500 text-xs font-bold uppercase tracking-widest text-balance px-4">Bye Bye Bride & Single & Ready</p>
         </div>
+        <p class="mt-6 text-gray-400 text-xs font-medium italic">Sábado 28 de Marzo — Sábado 4 de Abril</p>
     </header>
 
-    <div class="max-w-3xl mx-auto space-y-6 pb-24">
-
-        <!-- SABADO 28 -->
-        <section class="day-card p-5 rounded-lg shadow-md">
-            <h3 class="text-xl font-black fuchsia-text uppercase mb-4">Sábado 28 Marzo: ¡NOS VAMOS!</h3>
+    <div class="max-w-4xl mx-auto space-y-6 pb-24">
+        <section class="day-card p-5 rounded-lg">
+            <h3 class="text-xl font-black fuchsia-text uppercase mb-4">Sábado 28 Marzo</h3>
             <ul class="space-y-4 text-sm">
                 <li class="flex items-start"><span class="timeline-dot mt-1.5"></span> <div><span class="font-bold">07:30</span> - Despegue Avión ✈️</div></li>
                 <li class="flex items-start"><span class="timeline-dot mt-1.5"></span> <div><span class="font-bold">17:00</span> - Llegada Riu Republica 🏨</div></li>
-                <li class="flex items-start"><span class="timeline-dot mt-1.5"></span> <div><span class="font-bold">20:00</span> - Cena de Bienvenida 🥂</div></li>
                 <li class="flex items-start text-fuchsia-400 font-bold neon-glow"><span class="timeline-dot mt-1.5"></span> <div><span class="font-bold">21:00</span> - NEON PARTY 🌈</div></li>
             </ul>
         </section>
 
-        <!-- DOMINGO 29 -->
         <section class="day-card p-5 rounded-lg">
             <h3 class="text-xl font-black fuchsia-text mb-4 uppercase">Domingo 29 Marzo</h3>
             <ul class="space-y-4 text-sm">
-                <li class="flex items-start text-gray-400 italic"><span class="timeline-dot mt-1.5"></span> 10:00 - Gym Time (Opcional)</li>
-                <li class="flex items-start"><span class="timeline-dot mt-1.5"></span> 11:00 - Desayuno del Team</li>
-                <li class="flex items-start"><span class="timeline-dot mt-1.5"></span> 12:00 - Relaxing en la Playa 🏝️</li>
-                <li class="flex items-start font-bold border-l-2 border-white pl-4 ml-1"><span class="timeline-dot mt-1.5"></span> 18:00 - ACTIVIDAD N°1 🎲</li>
+                <li class="flex items-start"><span class="timeline-dot mt-1.5"></span> <div><span class="font-bold">12:00</span> - Relaxing en la Playa 🏝️</div></li>
+                <li class="flex items-start font-bold text-white border-l-2 border-white pl-4 ml-1"><span class="timeline-dot mt-1.5"></span> <div>ACTIVIDAD SORPRESA N°1 🎲</div></li>
             </ul>
         </section>
 
-        <!-- LUNES 30 -->
-        <section class="day-card p-5 rounded-lg relative overflow-hidden">
-            <div class="absolute right-[-10px] top-0 opacity-10 text-6xl font-black pointer-events-none uppercase italic">Saona</div>
+        <section class="day-card p-5 rounded-lg">
             <h3 class="text-xl font-black fuchsia-text mb-4 uppercase">Lunes 30 Marzo</h3>
-            <div class="bg-white text-black p-4 rounded font-bold text-center mb-2">
-                🚢 FULL DAY: ISLA SAONA 🌴
-            </div>
-            <p class="text-[10px] text-center opacity-60 italic">Arena blanca, sol y fotos grupales épicas</p>
+            <div class="bg-white text-black p-4 rounded font-bold text-center">🚢 FULL DAY: ISLA SAONA 🌴</div>
         </section>
 
-        <!-- MARTES 31 -->
         <section class="day-card p-5 rounded-lg">
             <h3 class="text-xl font-black fuchsia-text mb-4 uppercase">Martes 31 Marzo</h3>
-            <ul class="space-y-4 text-sm">
-                <li class="flex items-start text-gray-400 italic"><span class="timeline-dot mt-1.5"></span> 10:00 - Gym & Breakfast</li>
-                <li class="flex items-start text-green-400 font-bold"><span class="timeline-dot mt-1.5"></span> 15:00 - JUNGLE PARTY 🐆</li>
-            </ul>
+            <li class="flex items-start text-green-400 font-bold uppercase list-none"><span class="timeline-dot mt-1.5"></span> <div><span class="font-bold">15:00</span> - JUNGLE PARTY 🐆</div></li>
         </section>
 
-        <!-- MIERCOLES 1 -->
-        <section class="day-card p-5 rounded-lg border border-fuchsia-500 shadow-lg shadow-fuchsia-900/10">
+        <section class="day-card p-5 rounded-lg border-2 border-fuchsia-500">
             <h3 class="text-xl font-black fuchsia-text mb-4 uppercase text-center">Miércoles 1 Abril</h3>
-            <ul class="space-y-4 text-sm">
-                <li class="flex items-start"><span class="timeline-dot mt-1.5"></span> 11:00 - Mañana de SPA 🧖‍♀️</li>
-                <li class="flex items-start font-bold italic text-pink-300"><span class="timeline-dot mt-1.5"></span> SESIÓN HANNAH MONTANA 20° 🎤</li>
-                <li class="flex items-start text-white bg-fuchsia-600 px-2 py-1 inline-block mt-2 font-bold shadow-sm"><span class="timeline-dot mt-1.5"></span> 19:00 - WHITE PARTY 🤍</li>
-            </ul>
-        </section>
-
-        <!-- JUEVES 2 -->
-        <section class="day-card p-5 rounded-lg">
-            <h3 class="text-xl font-black fuchsia-text mb-4 uppercase">Jueves 2 Abril</h3>
-            <div class="border-2 border-dashed border-gray-600 p-4 rounded text-center font-bold">
-                🇩🇴 TOUR: SANTO DOMINGO
+            <div class="hannah-section p-4 rounded text-center mb-4">
+                <h4 class="text-lg font-black italic uppercase leading-tight">HANNAH MONTANA 20° ANIV. 🎤</h4>
             </div>
-            <p class="text-[10px] text-center mt-2 opacity-60">Cultura y shopping en la capital</p>
+            <div class="bg-white text-black py-3 text-center font-black tracking-widest uppercase text-sm">19:00 - WHITE PARTY 🤍</div>
         </section>
 
-        <!-- VIERNES 3 -->
         <section class="day-card p-5 rounded-lg">
-            <h3 class="text-xl font-black fuchsia-text mb-4 uppercase">Viernes 3 Abril: FINAL PARTY</h3>
-            <ul class="space-y-4 text-sm">
-                <li class="flex items-start text-fuchsia-500 font-bold text-lg leading-none mb-1"><span class="timeline-dot mt-1.5"></span> 15:00 - PINK PARTY 🎀</li>
-                <li class="flex items-start font-bold border-l-2 border-fuchsia-500 pl-4 mt-2"><span class="timeline-dot mt-1.5"></span> 18:00 - ACTIVIDAD N°2: BRINDIS FINAL 🍸</li>
-            </ul>
+            <h3 class="text-xl font-black fuchsia-text mb-4 uppercase text-balance px-4">Viernes 3 Abril</h3>
+            <li class="flex items-start text-fuchsia-500 font-black text-lg uppercase list-none"><span class="timeline-dot mt-1.5"></span> <div>PINK PARTY 🎀</div></li>
         </section>
-
-        <!-- SABADO 4 -->
-        <section class="day-card p-5 rounded-lg bg-white !text-black border-none">
-            <h3 class="text-xl font-black mb-1 uppercase italic">Sábado 4 Abril</h3>
-            <p class="font-bold text-xs mb-3">💔 Vuelta a Santiago (pero con el corazón lleno)</p>
-            <p class="text-3xl font-black leading-none italic">11:50 hrs ✈️</p>
-        </section>
-
     </div>
 
-    <!-- Modal IA -->
     <div id="aiModal" class="fixed inset-0 modal-overlay z-[60] hidden flex items-center justify-center p-4">
-        <div class="bg-[#111] border-2 border-fuchsia-500 rounded-3xl w-full max-w-lg max-h-[85vh] overflow-hidden flex flex-col shadow-2xl">
-            <div class="p-6 border-b border-fuchsia-900 flex justify-between items-center bg-black/50">
-                <h2 id="modalTitle" class="text-lg font-black italic fuchsia-text uppercase tracking-tight">✨ TEAM DE 4 AI</h2>
-                <button onclick="closeAIModal()" class="text-white text-3xl p-2 leading-none hover:text-fuchsia-500 transition-colors">&times;</button>
+        <div class="bg-[#111] border-2 border-fuchsia-500 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+            <div class="p-6 border-b border-fuchsia-900 flex justify-between items-center">
+                <h2 class="text-xl font-black italic fuchsia-text uppercase tracking-tight">✨ PUNTA CANA AI</h2>
+                <button onclick="closeAIModal()" class="text-white text-3xl p-2">&times;</button>
             </div>
-            
-            <div id="aiContent" class="p-6 overflow-y-auto flex-grow">
-                <!-- Menú de IA -->
-                <div id="aiMenu" class="grid grid-cols-2 gap-3">
-                    <button onclick="askAI('brindis')" class="p-4 border border-fuchsia-800 rounded-xl bg-black/40 active:bg-fuchsia-900 text-center">
+            <div class="p-6 overflow-y-auto space-y-6">
+                <div class="grid grid-cols-3 gap-3">
+                    <button onclick="askAI('outfit')" class="p-4 border border-fuchsia-800 rounded-lg bg-black/40 active:bg-fuchsia-900 transition-colors text-center">
+                        <span class="block text-2xl mb-1">👗</span>
+                        <span class="text-[10px] font-bold uppercase">Outfits</span>
+                    </button>
+                    <button onclick="askAI('brindis')" class="p-4 border border-fuchsia-800 rounded-lg bg-black/40 active:bg-fuchsia-900 transition-colors text-center">
                         <span class="block text-2xl mb-1">🥂</span>
-                        <span class="text-[10px] font-bold uppercase block">Brindis</span>
+                        <span class="text-[10px] font-bold uppercase">Brindis</span>
                     </button>
-                    <button onclick="askAI('instagram')" class="p-4 border border-fuchsia-800 rounded-xl bg-black/40 active:bg-fuchsia-900 text-center">
+                    <button onclick="askAI('instagram')" class="p-4 border border-fuchsia-800 rounded-lg bg-black/40 active:bg-fuchsia-900 transition-colors text-center">
                         <span class="block text-2xl mb-1">📸</span>
-                        <span class="text-[10px] font-bold uppercase block">Captions IG</span>
-                    </button>
-                    <button onclick="askAI('cocktail')" class="p-4 border border-fuchsia-800 rounded-xl bg-black/40 active:bg-fuchsia-900 text-center">
-                        <span class="block text-2xl mb-1">🍹</span>
-                        <span class="text-[10px] font-bold uppercase block">Cocktail Tip</span>
-                    </button>
-                    <button onclick="askAI('hannah')" class="p-4 border border-fuchsia-800 rounded-xl bg-black/40 active:bg-fuchsia-900 text-center">
-                        <span class="block text-2xl mb-1">🎤</span>
-                        <span class="text-[10px] font-bold uppercase block">Hannah M.</span>
+                        <span class="text-[10px] font-bold uppercase">IG</span>
                     </button>
                 </div>
-
-                <!-- Resultado -->
-                <div id="aiResult" class="hidden text-sm leading-relaxed whitespace-pre-wrap text-gray-200 bg-[#1a1a1a] p-5 rounded-xl border border-gray-800 shadow-inner mt-4">
-                </div>
-
-                <!-- Cargando -->
-                <div id="aiLoading" class="hidden flex flex-col items-center justify-center py-10">
+                <div id="aiResult" class="hidden bg-[#1a1a1a] p-6 rounded-xl border border-gray-800 text-sm leading-relaxed whitespace-pre-wrap"></div>
+                <div id="aiLoading" class="hidden flex flex-col items-center justify-center p-8">
                     <div class="loading-spinner mb-4"></div>
-                    <p class="text-fuchsia-400 animate-pulse font-bold text-[10px] uppercase tracking-widest">Generando para Montse, Bea, Berni y Chon...</p>
+                    <p class="text-fuchsia-400 animate-pulse font-bold uppercase text-[10px]">Preparando algo top...</p>
                 </div>
-            </div>
-
-            <div id="aiFooter" class="p-4 bg-black/30 text-center border-t border-fuchsia-900/20">
-                <button id="backBtn" onclick="showMenu()" class="hidden mr-4 text-[10px] font-bold uppercase tracking-widest text-fuchsia-500 hover:text-white transition-colors">← Volver al Menú</button>
-                <button onclick="closeAIModal()" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Cerrar</button>
             </div>
         </div>
     </div>
 
-    <footer class="text-center py-10 border-t border-fuchsia-900/30 mx-10 mt-10">
-        <p class="text-[10px] tracking-[0.3em] uppercase opacity-60 leading-relaxed font-bold">
-            Montse Hoyl • Bea Tagle • Berni • Chon
-            <br>
-            <span class="mt-2 inline-block font-medium">Punta Cana 2026</span>
-        </p>
-    </footer>
-
     <script>
-        const apiKey = ""; 
-
-        // Datos de respaldo por si falla la API o están offline en Punta Cana
-        const fallbacks = {
-            brindis: `🥂 BRINDIS PARA EL TEAM DE 4:
-
-PARA NUESTRA NOVIA (Montse Hoyl): 👰
-"Por Montse, porque el altar te espera pero nosotras siempre seremos tu puerto seguro. ¡Salud por la novia más hermosa!"
-
-PARA NUESTRA SOLTERA (Bea Tagle): ✨
-"Por Bea, porque esta nueva etapa es solo el comienzo de algo increíble. ¡La soltería te sienta de maravilla, amiga!"
-
-BRINDIS GRUPAL (Chon, Berni, Montse & Bea): 🍹
-"Por las 4. Porque no hay mejor equipo para conquistar Punta Cana. ¡Salud por esta semana inolvidable!"`,
-            
-            instagram: `📸 CAPTIONS PARA NUESTRO FEED:
-
-1. "Besties in paradise. 🌴✨ #PuntaCana2026 #TeamDe4"
-2. "Montse se casa, Bea se estrena y nosotras celebramos. 💍🔥 #SingleEra #ByeByeBride"
-3. "The fantastic 4. Nada más que decir. 🥥🍹"
-4. "Haciendo coreos de Hannah Montana a los 20+ años. 🎤💖"
-5. "Lo que pasa en el Riu, se queda en este carrete. 📸🔥 #TeamHoyl #SingleBea"`,
-
-            cocktail: `🍹 CONSEJO DE COCKTAILS (By Berni & Chon):
-Chicas, no dejen de probar el 'Coco Loco' en la barra de la piscina. Tip de supervivencia: ¡Pidan un vaso de agua por cada cocktail! Queremos llegar dignas a la cena. 🥥💧`,
-
-            hannah: `🎤 MOMENTO HANNAH MONTANA:
-¿Listas para la sesión? El tip es: ¡actitud de estrella pop! Vamos a cantar 'The Climb' frente al mar y 'Best of Both Worlds' en la White Party. Glitter obligatorio para las 4. ⭐️🌊`
-        };
-
-        function openAIModal(mode) {
+        function openAIModal() {
             document.getElementById('aiModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
-            if (mode === 'menu') showMenu();
         }
 
         function closeAIModal() {
             document.getElementById('aiModal').classList.add('hidden');
             document.body.style.overflow = 'auto';
-        }
-
-        function showMenu() {
-            document.getElementById('aiMenu').classList.remove('hidden');
             document.getElementById('aiResult').classList.add('hidden');
-            document.getElementById('aiLoading').classList.add('hidden');
-            document.getElementById('backBtn').classList.add('hidden');
-            document.getElementById('modalTitle').innerText = "✨ TEAM DE 4 AI";
         }
 
-        async function askAI(type) {
+        function askAI(type) {
             const resultDiv = document.getElementById('aiResult');
             const loadingDiv = document.getElementById('aiLoading');
-            const menuDiv = document.getElementById('aiMenu');
-            const backBtn = document.getElementById('backBtn');
-            const title = document.getElementById('modalTitle');
-            
-            menuDiv.classList.add('hidden');
             resultDiv.classList.add('hidden');
             loadingDiv.classList.remove('hidden');
-            backBtn.classList.remove('hidden');
 
-            let prompt = "";
-            if (type === 'brindis') {
-                title.innerText = "✨ BRINDIS DEL TEAM";
-                prompt = "Escribe 3 brindis: uno para Montse Hoyl (novia), uno para Bea Tagle (recién soltera) y uno grupal para las 4 amigas (Montse, Bea, Berni y Chon) en Punta Cana.";
-            } else if (type === 'instagram') {
-                title.innerText = "✨ CAPTIONS PARA IG";
-                prompt = "Crea 5 captions divertidas para Instagram sobre el viaje de las 4 amigas (Chon, Berni, Montse y Bea) en Punta Cana.";
-            } else if (type === 'cocktail') {
-                title.innerText = "✨ COCKTAIL TIPS";
-                prompt = "Sugiere 3 cocktails caribeños y un consejo de hidratación para el grupo de 4 amigas.";
-            } else if (type === 'hannah') {
-                title.innerText = "✨ HANNAH 20° ANIVERSARIO";
-                prompt = "Dame 3 ideas divertidas para que las 4 amigas celebren el 20° aniversario de Hannah Montana en Punta Cana.";
-            }
+            const responses = {
+                outfit: "👗 LOOKS PARA EL TEAM:\n\n🌈 NEON: Mucho flúor y stickers glow.\n🌿 JUNGLE: Animal print y accesorios verdes.\n🤍 WHITE: Vestidos largos, lino y ondas playeras.\n💖 PINK: ¡Todo al fucsia! Mucho glitter. ✨",
+                brindis: "🥂 ¡SALUD CHICAS!\n\n1. Por Montse: ¡La novia más top! 👰\n2. Por Bea: ¡Porque la soltería se celebra! ✨\n3. Por el Team: ¡Lo que pasa en el Riu, se queda en el Riu! 🍸",
+                instagram: "📸 CAPTIONS PARA IG:\n\n• 'Punta Cana no estaba lista para nosotras. 🌴🔥'\n• 'Bebiendo sol y coleccionando momentos. 🍹'\n#MontseSeCasa #SingleBea #PuntaCana2026"
+            };
 
-            setTimeout(async () => {
-                try {
-                    if (!apiKey) throw new Error("No API Key");
-                    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-                    const payload = {
-                        contents: [{ parts: [{ text: prompt }] }],
-                        systemInstruction: { parts: [{ text: "Eres la asistente virtual del viaje de Chon, Berni, Montse y Bea. Tu tono es divertido, fiestero y glamuroso. Berni y Chon son las organizadoras." }] }
-                    };
-                    const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                    const data = await response.json();
-                    resultDiv.innerText = data.candidates?.[0]?.content?.parts?.[0]?.text || fallbacks[type];
-                } catch (e) {
-                    resultDiv.innerText = fallbacks[type];
-                } finally {
-                    resultDiv.classList.remove('hidden');
-                    loadingDiv.classList.add('hidden');
-                }
-            }, 1200);
+            setTimeout(() => {
+                resultDiv.innerText = responses[type];
+                resultDiv.classList.remove('hidden');
+                loadingDiv.classList.add('hidden');
+            }, 1000);
         }
     </script>
 </body>
