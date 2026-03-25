@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Get Ready: Team de 4 en Punta Cana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root { --fuchsia: #ff007f; --black: #000000; --white: #ffffff; }
+        body { background-color: var(--black); color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+        .fuchsia-text { color: var(--fuchsia); }
+        .fuchsia-bg { background-color: var(--fuchsia); }
+        .header-title { font-family: 'Playfair Display', serif; letter-spacing: 1px; }
+        .neon-glow { text-shadow: 0 0 10px var(--fuchsia), 0 0 20px var(--fuchsia); }
+        .modal-overlay { background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); }
+        .loading-spinner { border: 4px solid rgba(255, 255, 255, 0.1); border-left-color: var(--fuchsia); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .card-prep { background: #111; border: 1px solid #222; border-bottom: 4px solid var(--fuchsia); }
+        
+        #aiResult {
+            scrollbar-width: thin;
+            scrollbar-color: var(--fuchsia) transparent;
+        }
+        #aiResult::-webkit-scrollbar { width: 6px; }
+        #aiResult::-webkit-scrollbar-thumb { background-color: var(--fuchsia); border-radius: 10px; }
+    </style>
+</head>
+<body class="p-6">
+
+    <header class="text-center mt-10 mb-12">
+        <h2 class="text-fuchsia-500 uppercase tracking-widest text-[10px] font-bold mb-2 italic">Organizado por Berni & Chon</h2>
+        <h1 class="header-title text-5xl font-black mb-6 italic neon-glow leading-tight">GIRLS TRIP</h1>
+        <div class="space-y-4">
+            <p class="text-sm opacity-80 uppercase tracking-tighter text-balance">Preparando motores para celebrar a:</p>
+            <div class="flex flex-col gap-2 items-center">
+                <span class="bg-white text-black px-6 py-2 font-black rounded-full text-lg uppercase italic shadow-lg shadow-white/5 text-center">💍 Montse Hoyl</span>
+                <span class="text-fuchsia-500 font-bold text-xs uppercase">Y nuestra newly soltera</span>
+                <span class="bg-white text-black px-6 py-2 font-black rounded-full text-lg uppercase italic shadow-lg shadow-white/5 text-center text-nowrap">✨ Bea Tagle</span>
+            </div>
+            <div class="mt-8 pt-4 border-t border-fuchsia-900/30">
+                <p class="text-fuchsia-400 font-black text-xs tracking-[0.2em] uppercase">The Fantastic 4:</p>
+                <p class="text-[10px] text-gray-400 mt-1 uppercase font-bold tracking-widest">Montse • Bea • Berni • Chon</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-xl mx-auto space-y-8">
+        <section class="card-prep p-8 rounded-2xl text-center">
+            <h3 class="text-2xl font-black mb-4 italic uppercase">Mensaje de Berni & Chon</h3>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                ¡Chicas! Hemos planeado esto con mucho amor. Es hora de que todas empecemos a preparar la maleta. 
+                Punta Cana no sabe lo que le espera a este grupo. 🌴🍹
+            </p>
+            <div class="bg-fuchsia-900/20 border border-fuchsia-500/50 p-4 rounded-xl">
+                <p class="text-fuchsia-400 font-bold text-xs uppercase tracking-widest mb-1">📢 Recordatorio Importante</p>
+                <p class="text-white text-xs">Por favor, ¡no olviden contratar su <strong>Seguro de Viaje</strong> las que aún no lo han hecho! Es clave para viajar tranquilas. 🛡️✨</p>
+            </div>
+        </section>
+
+        <!-- Botones de IA Destacados -->
+        <section class="space-y-4">
+            <h4 class="text-center text-fuchsia-500 font-bold tracking-widest text-[10px] uppercase">Planificación para el Team</h4>
+            <div class="grid grid-cols-1 gap-4">
+                <button onclick="openAIModal('maleta')" class="fuchsia-bg text-white p-6 rounded-2xl font-black text-xl flex items-center justify-between shadow-lg shadow-fuchsia-900/40 active:scale-95 transition-transform">
+                    <span class="text-left leading-tight">🧳 NUESTRA MALETA</span>
+                    <span class="ml-4">✨</span>
+                </button>
+                <button onclick="openAIModal('outfit')" class="bg-white text-black p-6 rounded-2xl font-black text-xl flex items-center justify-between shadow-lg active:scale-95 transition-transform">
+                    <span class="text-left leading-tight">👗 IDEAS DE LOOKS</span>
+                    <span class="ml-4">✨</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="text-center pt-10">
+            <p class="text-[10px] text-gray-600 font-bold uppercase tracking-[0.3em] text-balance px-4">Revelaremos el itinerario oficial al llegar al aeropuerto...</p>
+            <p class="text-[9px] text-fuchsia-900 mt-4 italic font-medium tracking-widest uppercase">Secret Surprise coming soon</p>
+        </section>
+    </main>
+
+    <!-- Modal IA -->
+    <div id="aiModal" class="fixed inset-0 modal-overlay z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#111] border-2 border-fuchsia-500 rounded-3xl w-full max-w-lg max-h-[85vh] overflow-hidden flex flex-col shadow-2xl">
+            <div class="p-6 border-b border-fuchsia-900 flex justify-between items-center bg-black/50">
+                <h2 id="modalTitle" class="text-lg font-black italic fuchsia-text uppercase tracking-tight">✨ TEAM DE 4 ASSISTANT</h2>
+                <button onclick="closeAIModal()" class="text-white text-3xl p-2 leading-none hover:text-fuchsia-500 transition-colors">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto">
+                <div id="aiLoading" class="hidden flex flex-col items-center justify-center py-10">
+                    <div class="loading-spinner mb-4"></div>
+                    <p class="text-fuchsia-400 animate-pulse font-bold text-[10px] uppercase tracking-widest">Consultando para Chon, Berni, Montse y Bea...</p>
+                </div>
+                <div id="aiResult" class="hidden text-sm leading-relaxed whitespace-pre-wrap text-gray-200 bg-[#1a1a1a] p-5 rounded-xl border border-gray-800 shadow-inner">
+                </div>
+            </div>
+            <div class="p-4 bg-black/30 text-center">
+                <button onclick="closeAIModal()" class="text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = ""; 
+
+        // Datos de respaldo actualizados con el Seguro de Viaje
+        const fallbacks = {
+            maleta: `🎒 CHECKLIST DEFINITIVO PARA EL TEAM DE 4:
+
+🚨 PRIORIDAD: SEGURO DE VIAJE (Contrátalo ya si te falta) 🛡️
+
+1. BÁSICOS DE VIAJE:
+• Cargador de celular y batería portátil.
+• Libro para leer bajo la palmera 📖.
+• Botiquín grupal (Ibuprofeno, sales de hidratación, parches curitas, antialérgicos).
+• Chalas de plástico para el agua y playa.
+• Zapatillas y ropa de deporte (¡para el Gym Time opcional!).
+
+2. PARA LAS FIESTAS TEMÁTICAS:
+• NEON PARTY: Ropa flúor o blanca que brille con luz UV 🌈.
+• JUNGLE PARTY: Animal print, accesorios de hojas, tonos verdes y tierra 🐆.
+• WHITE PARTY: Tu mejor outfit blanco total, elegante y fresco 🤍.
+• PINK PARTY: ¡Fucsia o Rosa vibrante de pies a cabeza! 🎀.
+
+3. INDISPENSABLES:
+• Pijamas cómodos.
+• Bloqueador solar y protector labial.
+• Trajes de baño y salidas de baño.
+• Lentes de sol y sombreros.
+
+¡Nos vemos en el aeropuerto! ✈️🏝️`,
+            
+            outfit: `👗 IDEAS DE LOOKS PARA LAS 4:
+
+🌟 NEON PARTY:
+• Maquillaje con sombras neón o stickers glow.
+• Accesorios luminosos.
+• Montse y Bea: Vestidos satinados flúor.
+• Berni y Chon: Tops neón con shorts denim.
+
+🌿 JUNGLE PARTY:
+• Estampados de leopardo, cebra o tropicales.
+• Coronas de flores o accesorios de hojas.
+• Montse puede usar un look 'Jungle Queen' con accesorios dorados.
+
+⚪ WHITE PARTY:
+• Vestidos largos de lino, encaje o crochet.
+• Cabello con ondas playeras.
+• Destacar a Montse con algún accesorio blanco especial.
+
+💖 PINK PARTY:
+• ¡Todo al rosa fucsia! Mucho glitter y energía alta.
+• Bea puede usar un look de 'Single Era' empoderado en rosa vibrante.
+
+¡Prepárense para las mejores fotos! ✨📸`
+        };
+
+        function openAIModal(type) {
+            document.getElementById('aiModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            askAI(type);
+        }
+
+        function closeAIModal() {
+            document.getElementById('aiModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            document.getElementById('aiResult').classList.add('hidden');
+        }
+
+        async function askAI(type) {
+            const resultDiv = document.getElementById('aiResult');
+            const loadingDiv = document.getElementById('aiLoading');
+            const title = document.getElementById('modalTitle');
+            
+            resultDiv.classList.add('hidden');
+            loadingDiv.classList.remove('hidden');
+
+            let prompt = "";
+            if (type === 'maleta') {
+                title.innerText = "✨ CHECKLIST DEL GRUPO";
+                prompt = "Haz una lista detallada para las 4 amigas (Montse, Bea, Berni y Chon). Destaca como prioridad número 1 CONTRATAR SEGURO DE VIAJE. Luego incluye: cargadores, libros, pijamas, ropa deportiva, chalas de plástico y botiquín. Incluye qué llevar para las fiestas: Neon, Jungle, White y Pink.";
+            } else if (type === 'outfit') {
+                title.innerText = "✨ LOOKS PARA LAS 4";
+                prompt = "Sugiere outfits para las 4 amigas en las fiestas temáticas: Neon, Jungle, White y Pink. Considera que Montse es la novia y Bea la newly soltera, ¡las 4 tienen que brillar! Sugiere accesorios y maquillaje.";
+            }
+
+            setTimeout(async () => {
+                try {
+                    if (!apiKey) throw new Error("No API Key");
+
+                    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                    const payload = {
+                        contents: [{ parts: [{ text: prompt }] }],
+                        systemInstruction: { parts: [{ text: "Eres la quinta amiga virtual de Chon, Berni, Montse y Bea. Berni y Chon son las organizadoras. Montse es la novia y Bea la recién soltera. Eres experta en Punta Cana, divertida y motivadora. Dale mucha importancia al seguro de viaje." }] }
+                    };
+
+                    const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    const data = await response.json();
+                    resultDiv.innerText = data.candidates?.[0]?.content?.parts?.[0]?.text || fallbacks[type];
+                } catch (e) {
+                    resultDiv.innerText = fallbacks[type];
+                } finally {
+                    resultDiv.classList.remove('hidden');
+                    loadingDiv.classList.add('hidden');
+                }
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
